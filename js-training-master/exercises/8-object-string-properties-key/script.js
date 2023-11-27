@@ -1,26 +1,26 @@
 // Show only string properties of an object
 function showStringProperties(curObj) {
-  // your code goes here
+  console.log(curObj);
 }
 
 // usage example:
 const Person = {
-  name: 'Dinanath',
+  name: "Dinanath",
   age: 40,
   height: 5.6,
-  country: 'India',
-  designation: 'UI Developer'
-}
+  country: "India",
+  designation: "UI Developer",
+};
 
 showStringProperties(Person); // name, country, designation
-console.log('----------');
+console.log("----------");
 
 const Technology = {
-  name: 'JavaScipt',
+  name: "JavaScipt",
   version: 6,
-  purpose: 'Scripting language for Web',
-  developer: 'Netscape Corporation'
-}
+  purpose: "Scripting language for Web",
+  developer: "Netscape Corporation",
+};
 
 showStringProperties(Technology); // name, purpose, developer
-console.log('----------');
+console.log("----------");

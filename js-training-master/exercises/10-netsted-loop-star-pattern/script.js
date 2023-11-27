@@ -21,7 +21,12 @@
 ```
  */
 function showPattern(totalRowsPatternCount) {
-  // Write your code here
+  for (let i = 1; i <= totalRowsPatternCount; i++) {
+    for (let j = 1; j <= i; j++) {
+      process.stdout.write("*"); // log without newline
+    }
+    console.log();
+  }
 }
 
 // Example

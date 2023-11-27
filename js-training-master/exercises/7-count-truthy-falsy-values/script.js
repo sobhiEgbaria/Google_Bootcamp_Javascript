@@ -2,10 +2,16 @@
   Write a function which checks and count the truthy values from an array
 */
 
-const valuesArray = [0, 1, '', undefined, false, true];
+const valuesArray = [0, 1, "", undefined, false, true];
 
 function checkCountTruthyFalsy(curArray) {
- // your code here
+  let counter = 0;
+  for (let i = 0; i < curArray.length; i++) {
+    if (typeof curArray[i] == "number") {
+      counter += 1;
+    }
+  }
+  return counter;
 }
 
 // usage example:
