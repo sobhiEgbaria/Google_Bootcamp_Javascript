@@ -6,6 +6,6 @@
  * @param {?} element - Object with values of any data types
  * @returns {boolean}
  */
-export const isEmptyDeep = (element) => {
-  throw new Error(`put your solution here ${element}`);
-};
+const isEmptyDeep = (element) => {};
+
+isEmptyDeep({ a: { b: undefined } });

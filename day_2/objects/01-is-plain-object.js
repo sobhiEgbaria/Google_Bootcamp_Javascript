@@ -5,17 +5,18 @@
  * @param element - element to verify
  * @returns {boolean}
  */
+const person = {};
 
-// const isPlainObject = (element) => {
-//   if (
-//     typeof element === "object" &&
-//     element.constructor === Object &&
-//     element != null
-//   ) {
-//     return true;
-//   } else {
-//     false;
-//   }
-// };
+const isPlainObject = (element) => {
+  if (
+    typeof element === "object" &&
+    element.constructor === Object &&
+    element != null
+  ) {
+    return true;
+  } else {
+    false;
+  }
+};
 
-// console.log(isPlainObject([1, 2, 3]));
+console.log(isPlainObject(null));

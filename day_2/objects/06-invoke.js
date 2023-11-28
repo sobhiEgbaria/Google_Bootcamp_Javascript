@@ -9,3 +9,5 @@
  * @returns {boolean}
  */
 const invoke = (object, path, func, args) => {};
+
+console.log("gogo");
