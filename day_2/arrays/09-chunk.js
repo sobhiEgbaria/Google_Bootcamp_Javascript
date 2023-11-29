@@ -6,6 +6,19 @@
  * @param {number} size - size of chunks
  * @returns {Array}
  */
-export const chunk = (array, size) => {
-  throw new Error(`put your solution here ${array} ${size}`);
+const chunk = (array, size) => {
+  temp_array = [];
+  chunk_array = [];
+
+  for (let i = 0; i < array.length; i++) {
+    temp_array.push(array[i]);
+
+    if (array.length - i == 1 || temp_array.length == size) {
+      chunk_array.push(temp_array);
+      temp_array = [];
+    }
+  }
+  return chunk_array;
 };
+
+console.log(chunk([1, 2, 3, 4, 5], 2));

@@ -7,18 +7,8 @@ class task {
     this.date = new Date().getDate();
   }
 }
-// let id = 1;
-// let new_test1 = new task("html");
-// let new_test2 = new task("css");
-// let new_test3 = new task("javascript");
-// let new_test4 = new task("reactjs");
 
-// console.log(new_test1);
-// console.log(new_test2);
-// console.log(new_test3);
-// console.log(new_test4);
-
-// ist of tasks
+// list of tasks
 class list_of_tasks {
   constructor() {
     this.tasks = {};

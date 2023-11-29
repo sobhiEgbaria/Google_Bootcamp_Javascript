@@ -5,6 +5,16 @@
  * @param {Array} array - A deep array
  * @returns {Array}
  */
-export const flatten = (array) => {
-  throw new Error(`put your solution here ${array}`);
+const flatten = (array) => {
+  flatten_array = [];
+  array_string = array.toString();
+
+  for (let i = 0; i < array_string.length; i++) {
+    if (array_string[i] != ",") {
+      flatten_array.push(parseInt(array_string[i]));
+    }
+  }
+  return flatten_array;
 };
+
+console.log(flatten([1, 2, [3, 4, [5]]]));
