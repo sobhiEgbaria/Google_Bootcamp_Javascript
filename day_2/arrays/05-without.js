@@ -6,6 +6,19 @@
  * @param {?} args list of values to remove
  * @returns {Array}
  */
-export const without = (array, ...args) => {
-  throw new Error(`put your solution here ${array} ${args}`);
+const without = (array, ...args) => {
+  // ...args return a [1,2] => an array of the arguments
+
+  const without_array = array.filter((array_element) => {
+    let is_in_array = true;
+    for (const j in args) {
+      if (args[j] === array_element) {
+        is_in_array = false;
+      }
+    }
+    return is_in_array;
+  });
+  return without_array;
 };
+
+console.log(without([1, 2, 3, 1, 2], 1, 2));

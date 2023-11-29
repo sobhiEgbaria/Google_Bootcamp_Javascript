@@ -5,6 +5,8 @@
  * @param {Array<string | number>} array - Array of primitive data types
  * @returns {Array}
  */
-export const unique = (array) => {
-  throw new Error(`put your solution here ${array}`);
+const unique = (array) => {
+  let unique = array.map((i) => {});
 };
+
+console.log(unique([1, 2, 3, 1, 2]));

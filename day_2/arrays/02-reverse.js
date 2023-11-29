@@ -5,6 +5,13 @@
  * @param {Array} array - Array of any elements
  * @returns {Array}
  */
-export const reverse = (array) => {
-  throw new Error(`put your solution here ${array}`);
+const reverse = (array) => {
+  let reverse_array = [];
+  for (let i = 0; i < array.length; i++) {
+    reverse_array.unshift(array[i]); // unshift push to the first
+  }
+
+  return reverse_array;
 };
+
+console.log(reverse([1, 2, 3]));

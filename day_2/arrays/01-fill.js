@@ -6,6 +6,14 @@
  * @param {?} value - value to fill
  * @returns {Array}
  */
-export const fill = (arraySize, value) => {
-  throw new Error(`put your solution here ${arraySize}, ${value}`);
+
+const fill = (arraySize, value) => {
+  const filled_array = [];
+
+  for (let i = 0; i < arraySize; i++) {
+    filled_array.push(value);
+  }
+  return filled_array;
 };
+
+console.log(fill(3, "a"));
