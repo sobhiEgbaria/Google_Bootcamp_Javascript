@@ -1,29 +1,59 @@
 // Implement a Stack class
-// A stack is a data structure where items are added and removed in a
+// A stack is a data structure where stack are added and removed in a
 // last in first out (LIFO) fashion.
 // use an array as the underlying data structure
 class Stack {
   constructor() {
-    // initialize storage
+    this.stack = [];
+    this.top = 0;
   }
 
   push(item) {
-    // add item to stack
+    this.stack[this.top] = item;
+    this.top++;
   }
 
   pop() {
-    // remove and return top item
+    this.stack.splice(-1);
+    this.top--;
   }
 
   peek() {
-    // return top item without removing
+    return this.stack[this.top - 1];
   }
 
   isEmpty() {
-    // return true if empty, false otherwise
+    if (!this.stack.length) {
+      return "The Stack is Empty";
+    }
+    return `Their are ${this.top} elements in the Stack`;
   }
 
   reverse() {
-    // reverse the stack
+    let reversed_stack = this.stack.reverse();
+    return reversed_stack;
   }
 }
+
+// create a first_stack object with Stack class
+let first_stack = new Stack();
+
+first_stack.push("first");
+first_stack.push("second");
+first_stack.push("third");
+console.log(first_stack.isEmpty());
+console.log(first_stack.stack);
+console.log("====================================\n");
+console.log(first_stack.reverse());
+
+console.log("====================================\n");
+first_stack.pop();
+console.log(first_stack.peek());
+console.log(first_stack.isEmpty());
+console.log(first_stack.stack);
+
+console.log("====================================\n");
+first_stack.pop();
+first_stack.pop();
+console.log(first_stack.isEmpty());
+console.log(first_stack.stack);

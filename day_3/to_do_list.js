@@ -35,20 +35,20 @@ class list_of_tasks {
 }
 
 let id = 1;
-let list_of_tasks1 = new list_of_tasks();
+let first_list = new list_of_tasks();
 let new_task = new task("html");
 let new_task2 = new task("css");
 let new_task3 = new task("javascript");
 let new_task4 = new task("reactjs");
 
-list_of_tasks1.add(new_task);
-list_of_tasks1.add(new_task2);
-list_of_tasks1.add(new_task3);
-list_of_tasks1.add(new_task4);
-list_of_tasks1.remove(new_task3);
-list_of_tasks1.is_done(new_task2);
-list_of_tasks1.editTodo(new_task4, "nexstjs");
+first_list.add(new_task);
+first_list.add(new_task2);
+first_list.add(new_task3);
+first_list.add(new_task4);
+first_list.remove(new_task3);
+first_list.is_done(new_task2);
+first_list.editTodo(new_task4, "nexstjs");
 
-console.log(list_of_tasks1);
+console.log(first_list);
 
-console.log(list_of_tasks1.search("1")); // search by id
+console.log(first_list.search("1")); // search by id
