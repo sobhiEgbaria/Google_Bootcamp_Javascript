@@ -5,6 +5,4 @@
  * @param {Object<string | number>} secondObj - Object with values of any data types
  * @returns {Object}
  */
-export const intersectionDeep = (firstObj, secondObj) => {
-  throw new Error(`put your solution here ${firstObj} ${secondObj}`);
-};
+const intersectionDeep = (firstObj, secondObj) => {};

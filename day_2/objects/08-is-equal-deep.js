@@ -5,6 +5,4 @@
  * @param {Object<string | number>} secondObj - Object with values of primitive data types
  * @returns {boolean}
  */
-export const isEqualDeep = (firstObj, secondObj) => {
-  throw new Error(`put your solution here ${firstObj} ${secondObj}`);
-};
+const isEqualDeep = (firstObj, secondObj) => {};

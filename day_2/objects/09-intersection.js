@@ -5,6 +5,4 @@
  * @param {Object<string | number>} secondObj - Object with values of primitive data types
  * @returns {Object}
  */
-export const intersection = (firstObj, secondObj) => {
-  throw new Error(`put your solution here ${firstObj} ${secondObj}`);
-};
+const intersection = (firstObj, secondObj) => {};

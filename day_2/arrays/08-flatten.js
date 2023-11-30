@@ -9,9 +9,9 @@ const flatten = (array) => {
   flatten_array = [];
   array_string = array.toString();
 
-  for (let i = 0; i < array_string.length; i++) {
-    if (array_string[i] != ",") {
-      flatten_array.push(parseInt(array_string[i]));
+  for (element of array_string) {
+    if (element != ",") {
+      flatten_array.push(parseInt(element));
     }
   }
   return flatten_array;

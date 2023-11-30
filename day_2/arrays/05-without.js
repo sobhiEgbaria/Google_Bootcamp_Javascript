@@ -11,8 +11,9 @@ const without = (array, ...args) => {
 
   const without_array = array.filter((array_element) => {
     let is_in_array = true;
-    for (const j in args) {
-      if (args[j] === array_element) {
+
+    for (const number of args) {
+      if (number === array_element) {
         is_in_array = false;
       }
     }
@@ -21,4 +22,4 @@ const without = (array, ...args) => {
   return without_array;
 };
 
-console.log(without([1, 2, 3, 1, 2], 1, 2));
+console.log(without([1, 2, 3, 1, 2, 5], 1, 2));
