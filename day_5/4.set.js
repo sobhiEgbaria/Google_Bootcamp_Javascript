@@ -53,6 +53,9 @@ class Set {
 
   union(set) {
     // return union of two sets
+    for (const iterator of set) {
+      this.add(iterator);
+    }
   }
 
   intersection(set) {
@@ -84,5 +87,5 @@ my_set.add(5);
 my_set.remove(5);
 my_set.remove(2);
 console.log(my_set.getValues());
-console.log(my_set.getSize());
-console.log(my_set);
+my_set.union([1, 4, 3, 5, 6, 7]);
+console.log(my_set.getValues());

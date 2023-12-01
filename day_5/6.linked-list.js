@@ -4,7 +4,6 @@ class LinkedListNode {
 }
 
 // Implement a Linked List class
-// https://en.wikipedia.org/wiki/Linked_list
 // Your linked list should have methods called "append", "prepend", and "traverse"
 class LinkedList {
   constructor() {
