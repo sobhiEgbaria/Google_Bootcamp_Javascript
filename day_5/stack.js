@@ -1,6 +1,6 @@
 // Implement a Stack class
 // A stack is a data structure where stack are added and removed in a
-// last in first out (LIFO) fashion.
+// last in, first out (LIFO) fashion.
 // use an array as the underlying data structure
 class Stack {
   constructor() {
