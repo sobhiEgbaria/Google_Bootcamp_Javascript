@@ -24,6 +24,7 @@ class Stack {
 
   isEmpty() {
     if (!this.stack.length) {
+      //this.stack.length == 0
       return "The Stack is Empty";
     }
     return `Their are ${this.top} elements in the Stack`;
