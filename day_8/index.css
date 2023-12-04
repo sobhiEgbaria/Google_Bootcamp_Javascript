@@ -13,17 +13,37 @@
   background-color: rgba(128, 128, 128, 0.192);
   border-radius: 10px;
 }
-.form #input,
-#input:focus {
+#update_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 30px 250px;
+  background-color: rgba(0, 128, 0, 0.623);
+  border-radius: 10px;
+}
+#update_bar .update_btn {
+  background-color: rgba(128, 128, 128, 0.676);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-left: 70px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#input,
+#input:focus,
+.update_input {
   padding: 20px;
   border-radius: 10px;
   border: none;
   outline: none;
-  width: 80%;
+  width: 70%;
   margin-left: 20px;
 }
 
-.form #btn {
+#btn {
   background-color: rgb(255, 0, 0);
   padding: 17px;
   border-radius: 10px;
@@ -34,7 +54,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.form #btn:hover {
+#btn:hover {
   background-color: green;
   cursor: pointer;
 }

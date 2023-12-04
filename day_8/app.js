@@ -1,7 +1,13 @@
 const add_task = document.getElementById("btn");
 const input = document.getElementById("input");
 const tasks_div = document.getElementById("tasks");
+const update_bar = document.getElementById("update_bar");
+const update_input = document.getElementById("update_input");
 
+// update_bar display = disappear
+update_bar.style.display = "none";
+
+// event listener to add task
 add_task.addEventListener("click", () => {
   if (input.value !== "") {
     add(input.value);
@@ -10,14 +16,17 @@ add_task.addEventListener("click", () => {
   render_task(to_do_list);
 });
 
+// event listener to remove task
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "delete") {
     remove(parseInt(e.target.id));
     e.target.parentElement.parentElement.remove();
   }
 });
+
+// event listener to change is_done status
 tasks_div.addEventListener("click", (e) => {
-  if (e.target.className == "not_done" || "done") {
+  if (e.target.className == "not_done" || e.target.className == "done") {
     console.log(to_do_list[parseInt(e.target.id)].is_done);
     if (to_do_list[parseInt(e.target.id)].is_done) {
       is_done(parseInt(e.target.id));
@@ -30,6 +39,26 @@ tasks_div.addEventListener("click", (e) => {
     }
   }
 });
+
+// // event listener to update the task ==> showing the update_bar
+tasks_div.addEventListener("click", (e) => {
+  let id = parseInt(e.target.id);
+  if (e.target.className == "update") {
+    update_content(id);
+    update_bar.style.display = "block";
+  }
+});
+
+// function to update content
+const update_content = (id) => {
+  update_bar.addEventListener("click", (e) => {
+    if (e.target.className == "update_btn") {
+      editTodo(id, update_input.value);
+      render_task(to_do_list);
+      update_bar.style.display = "none";
+    }
+  });
+};
 
 // loop over the to_do_list and create the tasks with the buttons
 const render_task = (to_do_list) => {
