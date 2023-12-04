@@ -1,0 +1,96 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  margin: 30px 70px;
+  background-color: rgba(128, 128, 128, 0.192);
+  border-radius: 10px;
+}
+.form #input,
+#input:focus {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 80%;
+  margin-left: 20px;
+}
+
+.form #btn {
+  background-color: rgb(255, 0, 0);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-left: 70px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.form #btn:hover {
+  background-color: green;
+  cursor: pointer;
+}
+#tasks {
+  padding: 30px;
+  margin: 30px 70px;
+  background-color: rgba(128, 128, 128, 0.192);
+  border-radius: 10px;
+}
+
+#tasks .new_task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 20px 90px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#tasks .delete,
+#tasks .not_done {
+  background-color: rgb(255, 0, 0);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#tasks .delete:hover,
+#tasks .not_done:hover {
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.493);
+}
+
+#tasks h3 {
+  padding: 17px;
+  color: rgba(16, 15, 15, 0.667);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#tasks .update,
+#tasks .done {
+  background-color: rgba(0, 128, 0, 0.603);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#tasks .update:hover,
+#tasks .done:hover {
+  cursor: pointer;
+  background-color: rgb(2, 208, 2);
+}
