@@ -1,8 +1,8 @@
-const add_task = document.getElementById("btn");
-const input = document.getElementById("input");
-const tasks_div = document.getElementById("tasks");
-const update_bar = document.getElementById("update_bar");
-const update_input = document.getElementById("update_input");
+const add_task = document.getElementById("btn"); // btn add task onClick
+const input = document.getElementById("input"); // input for the task title
+const tasks_div = document.getElementById("tasks"); // div contain all the new tasks
+const update_bar = document.getElementById("update_bar"); // div contain the input+btn update
+const update_input = document.getElementById("update_input"); // input for the update
 
 // update_bar display = disappear
 update_bar.style.display = "none";
@@ -20,14 +20,14 @@ add_task.addEventListener("click", () => {
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "delete") {
     remove(parseInt(e.target.id));
-    e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.remove(); // remove the div that contain the task
   }
 });
 
 // event listener to change is_done status
+//
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "not_done" || e.target.className == "done") {
-    console.log(to_do_list[parseInt(e.target.id)].is_done);
     if (to_do_list[parseInt(e.target.id)].is_done) {
       is_done(parseInt(e.target.id));
       e.target.innerHTML = "Not Completed";
@@ -60,38 +60,40 @@ const update_content = (id) => {
   });
 };
 
-// loop over the to_do_list and create the tasks with the buttons
+// loop over the to_do_list and create the every new task/update_input/buttons
 const render_task = (to_do_list) => {
   tasks_div.innerHTML = "";
   to_do_list.forEach((task) => {
-    // create a task with id
+    // create a div that contain one new task
     let new_task = document.createElement("div");
     new_task.className = "new_task";
     new_task.id = task.id;
 
+    // create the title of the new task
     let content = document.createElement("h3");
     content.innerHTML = `${task.name}`;
     new_task.appendChild(content);
 
-    // div for all the btns
+    // div that contain all the 3 btns
     let buttons_div = document.createElement("div");
     buttons_div.className = "buttons_div";
 
-    //create update btn
+    //create update btn, and appended it to the div of 3 btns
     let update = document.createElement("button");
     update.id = task.id;
     update.className = "update";
     update.innerHTML = "update";
     buttons_div.appendChild(update);
 
-    //create a delete button
+    //create a delete button, and appended it to the div of 3 btns
     let del = document.createElement("button");
     del.className = "delete";
     del.id = task.id;
     del.innerHTML = "delete";
     buttons_div.appendChild(del);
 
-    //create done button
+    //create done button, and appended it to the div of 3 btns
+    // change the class name to change the style
     let is_done = document.createElement("button");
     if (task.is_done) {
       is_done.className = "done";
@@ -100,21 +102,23 @@ const render_task = (to_do_list) => {
       is_done.className = "not_done";
       is_done.innerHTML = "Not Completed";
     }
-
     is_done.id = task.id;
     buttons_div.appendChild(is_done);
 
-    new_task.appendChild(buttons_div);
     // append content and btns  tasks_div
-    console.log(to_do_list);
     tasks_div.appendChild(new_task);
+
+    // append the div of 3 btns to the div of one new task
+    new_task.appendChild(buttons_div);
   });
 };
 
-// to do list with function // class that make a one task
+// to do list with function
 const to_do_list = [];
 
+//function that add one task to the to_do_list:[]
 const add = (name, is_done = false, id = 0) => {
+  // if the list empty id = 0, if the list not empty id = the id of the last task +1
   if (to_do_list.length !== 0) {
     id = to_do_list[to_do_list.length - 1].id + 1;
   }
