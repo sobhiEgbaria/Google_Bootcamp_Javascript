@@ -4,7 +4,7 @@ const tasks_div = document.getElementById("tasks"); // div contain all the new t
 const update_bar = document.getElementById("update_bar"); // div contain the input+btn update
 const update_input = document.getElementById("update_input"); // input for the update
 
-// update_bar display = disappear
+// update_bar display = disappear (make all the div disappear)
 update_bar.style.display = "none";
 
 // event listener to add task
@@ -13,19 +13,18 @@ add_task.addEventListener("click", () => {
     add(input.value);
     input.value = "";
   }
-  render_task(to_do_list);
+  render_task(to_do_list); // create the list from the beginning
 });
 
 // event listener to remove task
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "delete") {
     remove(parseInt(e.target.id));
-    e.target.parentElement.parentElement.remove(); // remove the div that contain the task
+    render_task(to_do_list); // create the list from the beginning
   }
 });
 
 // event listener to change is_done status
-//
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "not_done" || e.target.className == "done") {
     if (to_do_list[parseInt(e.target.id)].is_done) {
@@ -42,7 +41,7 @@ tasks_div.addEventListener("click", (e) => {
 
 // // event listener to update the task ==> showing the update_bar
 tasks_div.addEventListener("click", (e) => {
-  let id = parseInt(e.target.id);
+  let id = parseInt(e.target.id); // stor the task id
   if (e.target.className == "update") {
     update_content(id);
     update_bar.style.display = "block";
@@ -52,14 +51,15 @@ tasks_div.addEventListener("click", (e) => {
 // function to update content
 const update_content = (id) => {
   update_bar.addEventListener("click", (e) => {
-    if (e.target.className == "update_btn") {
+    if (e.target.className == "heading_update_btn") {
       editTodo(id, update_input.value);
-      render_task(to_do_list);
+      render_task(to_do_list); // create the list from the beginning
       update_bar.style.display = "none";
     }
   });
 };
 
+//clear all the tasks first ( tasks_div.innerHTML = "";)
 // loop over the to_do_list and create the every new task/update_input/buttons
 const render_task = (to_do_list) => {
   tasks_div.innerHTML = "";
@@ -131,6 +131,7 @@ const add = (name, is_done = false, id = 0) => {
   });
 };
 
+// delete a task from the to_do_list(array) by id
 const remove = (task_id) => {
   to_do_list.forEach((task, index) => {
     if (task.id === task_id) {
@@ -139,6 +140,7 @@ const remove = (task_id) => {
   });
 };
 
+// function that chang is_don status:  T-->F AND F-->T
 const is_done = (task_id) => {
   to_do_list.forEach((task, index) => {
     if (task.id === task_id) {
@@ -147,6 +149,7 @@ const is_done = (task_id) => {
   });
 };
 
+//edit a task by change the task title(name)
 const editTodo = (task_id, update) => {
   to_do_list.forEach((task) => {
     if (task.id === task_id) {
@@ -155,6 +158,7 @@ const editTodo = (task_id, update) => {
   });
 };
 
+// return an object of task by Id
 const search = (task_id) => {
   for (const task of to_do_list) {
     if (task.id === task_id) {
