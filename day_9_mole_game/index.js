@@ -12,12 +12,17 @@ const holes_list = [hole, hole_hit, hole_sad, hole_up, hole_start];
 let index = 0;
 let timer = 30;
 
+// render function that change the "up mole" location every time we call it.
+// we will call this function with setInterval every 0.5 sec.
+
 const render_page = (holes_list) => {
   holes_list[index].className = "hole";
   index = Math.floor(Math.random() * 5);
   holes_list[index].className = "hole up";
 };
 
+// game over function will stop every eventListener,
+// and Returns the first look of the moles.
 const game_over = () => {
   lawn.removeEventListener("click", hit, false);
   time.innerHTML = "---";
@@ -28,7 +33,13 @@ const game_over = () => {
   hole.className = "hole";
 };
 
+`
+// the start eventListener, contain all the functional of the game.
+
+`;
 hole_start.addEventListener("click", () => {
+  // set every hole as an empty hole
+  // start the time in 30 sec
   hole_start.className = "hole";
   hole_up.className = "hole";
   hole_sad.className = "hole";
@@ -36,6 +47,8 @@ hole_start.addEventListener("click", () => {
   hole.className = "hole";
   time.innerHTML = "30";
 
+  // the timer function, 30 sec,
+  //and when the function end they call a game over function
   setInterval(() => {
     if (timer != 0) {
       time.innerHTML = `${parseInt(time.innerText) - 1}`;
@@ -46,6 +59,7 @@ hole_start.addEventListener("click", () => {
     }
   }, 1000);
 
+  // the render timer. that call render_page function every 0.5 sec
   setInterval(() => {
     if (timer != 0) {
       render_page(holes_list);
@@ -54,6 +68,10 @@ hole_start.addEventListener("click", () => {
     }
   }, 500);
 
+  // the main listener, listen to all the holes.
+  //and change the mole reaction with every click according to the hit
+  // hit mole up --> sad reaction,
+  //hit empty hole --> funny reaction
   lawn.addEventListener(
     "click",
     (hit = (e) => {
