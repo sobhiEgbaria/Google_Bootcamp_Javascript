@@ -56,7 +56,6 @@
 .all_btn,
 .Active_btn,
 .Completed_btn {
-  background-color: rgba(128, 128, 128, 0.644);
   padding: 17px;
   border-radius: 10px;
   margin-right: 20px;
@@ -65,15 +64,11 @@
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: max-content;
+  font-size: 20px;
+  color: gray;
 }
-.pushed {
-  background-color: rgba(0, 128, 0, 0.603);
-  padding: 17px;
-  border-radius: 10px;
-  margin-right: 20px;
-  border: none;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+i {
+  font-size: 20px;
 }
 
 .all_btn:hover,

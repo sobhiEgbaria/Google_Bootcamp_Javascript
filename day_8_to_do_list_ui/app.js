@@ -14,7 +14,7 @@ sorry for the long speech :)
 // fetch("https://jsonplaceholder.typicode.com/todos").then((res) => {
 //   res.json().then((data) => {
 //     to_do_list = data;
-//     render_task(to_do_list);
+//     render_task(to_do_list, to_do_list);
 //   });
 // });
 
@@ -128,17 +128,17 @@ const render_task = (render_list, to_do_list) => {
     //create a filters btns
     let all_btn = document.createElement("button");
     all_btn.className = "all_btn";
-    all_btn.innerHTML = `ALL: ${to_do_list.length}`;
+    all_btn.innerHTML = `<i class="fa-solid fa-list"></i> ${to_do_list.length}`;
     div_filter.appendChild(all_btn);
 
     let Active_btn = document.createElement("button");
     Active_btn.className = "Active_btn";
-    Active_btn.innerHTML = `Active: ${is_Active}`;
+    Active_btn.innerHTML = `<i class="fa-solid fa-hourglass"></i> ${is_Active}`;
     div_filter.appendChild(Active_btn);
 
     let Completed_btn = document.createElement("button");
     Completed_btn.className = "Completed_btn";
-    Completed_btn.innerHTML = `Completed: ${is_Completed}`;
+    Completed_btn.innerHTML = `<i class="fa-solid fa-check"></i> ${is_Completed}`;
     div_filter.appendChild(Completed_btn);
   }
 
