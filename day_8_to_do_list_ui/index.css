@@ -53,6 +53,34 @@
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.all_btn,
+.Active_btn,
+.Completed_btn {
+  background-color: rgba(128, 128, 128, 0.644);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-left: 70px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: max-content;
+}
+.pushed {
+  background-color: rgba(0, 128, 0, 0.603);
+  padding: 17px;
+  border-radius: 10px;
+  margin-right: 20px;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.all_btn:hover,
+.Active_btn:hover,
+.Completed_btn {
+  cursor: pointer;
+}
 
 #btn:hover {
   background-color: green;
@@ -118,5 +146,11 @@
 .buttons_div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.div_filter {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
