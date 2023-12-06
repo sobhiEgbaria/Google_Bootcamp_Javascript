@@ -7,14 +7,15 @@ const lawn = document.getElementById("lawn");
 const score = document.getElementById("score");
 const time = document.getElementById("time");
 
+// the game parameters
 const holes_list = [hole, hole_hit, hole_sad, hole_up, hole_start];
-let id = 0;
+let index = 0;
 let timer = 30;
 
 const render_page = (holes_list) => {
-  holes_list[id].className = "hole";
-  id = Math.floor(Math.random() * 5);
-  holes_list[id].className = "hole up";
+  holes_list[index].className = "hole";
+  index = Math.floor(Math.random() * 5);
+  holes_list[index].className = "hole up";
 };
 
 const game_over = () => {
@@ -63,7 +64,7 @@ hole_start.addEventListener("click", () => {
         }, 250);
         score.innerHTML = `${parseInt(score.innerText) + 10}`;
       } else if (e.target.className == "hole") {
-        holes_list[id].className = "hole hit";
+        holes_list[index].className = "hole hit";
         setTimeout(() => {
           e.target.className = "hole";
         }, 250);
