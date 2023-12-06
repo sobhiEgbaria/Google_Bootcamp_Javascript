@@ -40,7 +40,7 @@ header {
 .hole {
   width: 120px;
   height: 150px;
-  background-image: url('./mole.png');
+  background-image: url("./mole.png");
   background-size: 600px;
   background-repeat: no-repeat;
   display: flex;
@@ -62,4 +62,12 @@ header {
 
 .start {
   background-position: 100% 100%;
+}
+
+.start:hover {
+  cursor: pointer;
+}
+
+#time {
+  color: red;
 }

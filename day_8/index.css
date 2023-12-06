@@ -92,7 +92,7 @@
   background-color: rgba(255, 0, 0, 0.493);
 }
 
-#tasks h3 {
+#tasks h4 {
   padding: 17px;
   color: rgba(16, 15, 15, 0.667);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -113,4 +113,10 @@
 #tasks .done:hover {
   cursor: pointer;
   background-color: rgb(2, 208, 2);
+}
+
+.buttons_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

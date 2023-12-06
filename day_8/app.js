@@ -1,3 +1,22 @@
+// to do list with function
+let to_do_list = [];
+
+`the next few lines in comment will fetch data from the API and render it to the page.
+if you remove the comment it will work just fine, but the layout not that good,
+and the completed button act act weird in some cases,
+that not happens when you enter the tasks manually
+that's why i leave it in comment: 
+you can try, sorry for the long speech :)
+`;
+
+// // fetch the data and add it to the list then render the list to show thw data.
+// fetch("https://jsonplaceholder.typicode.com/todos").then((res) => {
+//   res.json().then((data) => {
+//     to_do_list = data;
+//     render_task(to_do_list);
+//   });
+// });
+
 const add_task = document.getElementById("btn"); // btn add task onClick
 const input = document.getElementById("input"); // input for the task title
 const tasks_div = document.getElementById("tasks"); // div contain all the new tasks
@@ -27,7 +46,7 @@ tasks_div.addEventListener("click", (e) => {
 // event listener to change is_done status
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "not_done" || e.target.className == "done") {
-    if (to_do_list[parseInt(e.target.id)].is_done) {
+    if (to_do_list[parseInt(e.target.id)].completed) {
       is_done(parseInt(e.target.id));
       e.target.innerHTML = "Not Completed";
       e.target.className = "not_done";
@@ -70,8 +89,8 @@ const render_task = (to_do_list) => {
     new_task.id = task.id;
 
     // create the title of the new task
-    let content = document.createElement("h3");
-    content.innerHTML = `${task.name}`;
+    let content = document.createElement("h4");
+    content.innerHTML = `${task.title}`;
     new_task.appendChild(content);
 
     // div that contain all the 3 btns
@@ -95,7 +114,7 @@ const render_task = (to_do_list) => {
     //create done button, and appended it to the div of 3 btns
     // change the class name to change the style
     let is_done = document.createElement("button");
-    if (task.is_done) {
+    if (task.completed) {
       is_done.className = "done";
       is_done.innerHTML = "COMPLETED";
     } else {
@@ -113,19 +132,16 @@ const render_task = (to_do_list) => {
   });
 };
 
-// to do list with function
-const to_do_list = [];
-
 //function that add one task to the to_do_list:[]
-const add = (name, is_done = false, id = 0) => {
+const add = (title, completed = false, id = 0) => {
   // if the list empty id = 0, if the list not empty id = the id of the last task +1
   if (to_do_list.length !== 0) {
     id = to_do_list[to_do_list.length - 1].id + 1;
   }
 
   to_do_list.push({
-    name: name,
-    is_done: is_done,
+    title: title,
+    completed: completed,
     id: id,
     date: new Date().toLocaleDateString(),
   });
@@ -142,18 +158,19 @@ const remove = (task_id) => {
 
 // function that chang is_don status:  T-->F AND F-->T
 const is_done = (task_id) => {
-  to_do_list.forEach((task, index) => {
+  for (const task of to_do_list) {
     if (task.id === task_id) {
-      task.is_done = !task.is_done;
+      task.completed = !task.completed;
+      break;
     }
-  });
+  }
 };
 
 //edit a task by change the task title(name)
 const editTodo = (task_id, update) => {
   to_do_list.forEach((task) => {
     if (task.id === task_id) {
-      task.name = update;
+      task.title = update;
     }
   });
 };

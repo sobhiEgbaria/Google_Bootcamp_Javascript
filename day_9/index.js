@@ -1,45 +1,73 @@
-const hole1 = document.getElementById("1");
-const hole2 = document.getElementById("2");
-const hole3 = document.getElementById("3");
-const hole4 = document.getElementById("4");
-const hole5 = document.getElementById("5");
+const hole_start = document.getElementById("1");
+const hole_hit = document.getElementById("2");
+const hole_sad = document.getElementById("3");
+const hole_up = document.getElementById("4");
+const hole = document.getElementById("5");
 const lawn = document.getElementById("lawn");
 const score = document.getElementById("score");
 const time = document.getElementById("time");
 
-const elements_id = [hole1, hole2, hole3, hole4, hole5];
-let counter = 30;
-const time_counter = () => {
-  time.innerHTML = `${parseInt(time.innerText) - 1}`;
-  counter--;
-};
+const holes_list = [hole, hole_hit, hole_sad, hole_up, hole_start];
+let id = 0;
+let timer = 30;
 
-setInterval(() => {
-  if (counter != 0) {
-    time_counter();
-  } else {
-    clearInterval();
-  }
-}, 1000);
-
-const render_page = (elements_id) => {
+const render_page = (holes_list) => {
+  holes_list[id].className = "hole";
   id = Math.floor(Math.random() * 5);
-
-  elements_id[id].className = "hole up";
-
-  setTimeout(() => {
-    elements_id[id].className = "hole";
-  }, 1500);
+  holes_list[id].className = "hole up";
 };
 
-lawn.addEventListener("click", (e) => {
-  console.log(e.target.className);
-  if (e.target.className == "hole up") {
-    e.target.className = "hole sad";
-    score.innerHTML = `${parseInt(score.innerText) + 10}`;
-  }
-});
+const game_over = () => {
+  lawn.removeEventListener("click", hit, false);
+  time.innerHTML = "---";
+  hole_start.className = "hole start";
+  hole_up.className = "hole up";
+  hole_sad.className = "hole sad";
+  hole_hit.className = "hole hit";
+  hole.className = "hole";
+};
 
-setInterval(() => {
-  render_page(elements_id);
-}, 900);
+hole_start.addEventListener("click", () => {
+  hole_start.className = "hole";
+  hole_up.className = "hole";
+  hole_sad.className = "hole";
+  hole_hit.className = "hole";
+  hole.className = "hole";
+  time.innerHTML = "30";
+
+  setInterval(() => {
+    if (timer != 0) {
+      time.innerHTML = `${parseInt(time.innerText) - 1}`;
+      timer--;
+    } else {
+      game_over();
+      clearInterval();
+    }
+  }, 1000);
+
+  setInterval(() => {
+    if (timer != 0) {
+      render_page(holes_list);
+    } else {
+      clearInterval();
+    }
+  }, 500);
+
+  lawn.addEventListener(
+    "click",
+    (hit = (e) => {
+      if (e.target.className == "hole up") {
+        e.target.className = "hole sad";
+        setTimeout(() => {
+          e.target.className = "hole";
+        }, 250);
+        score.innerHTML = `${parseInt(score.innerText) + 10}`;
+      } else if (e.target.className == "hole") {
+        holes_list[id].className = "hole hit";
+        setTimeout(() => {
+          e.target.className = "hole";
+        }, 250);
+      }
+    })
+  );
+});
