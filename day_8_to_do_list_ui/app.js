@@ -24,6 +24,7 @@ const input = document.getElementById("input"); // input for the task title
 const tasks_div = document.getElementById("tasks"); // div contain all the new tasks
 const update_bar = document.getElementById("update_bar"); // div contain the input+btn update
 const update_input = document.getElementById("update_input"); // input for the update
+const clear_completed = document.getElementById("clear_completed"); // input for the update
 
 // update_bar display = make all the div disappear
 update_bar.style.display = "none";
@@ -58,17 +59,21 @@ tasks_div.addEventListener("click", (e) => {
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "not_done" || e.target.className == "done") {
     // if .completed is true --> false, else if false --> true
-    if (to_do_list[parseInt(e.target.id)].completed) {
-      is_done(parseInt(e.target.id));
-      e.target.innerHTML = "Not Completed";
-      e.target.className = "not_done";
-    } else {
-      is_done(parseInt(e.target.id));
-      e.target.innerHTML = "COMPLETED";
-      e.target.className = "done";
+    for (const task of to_do_list) {
+      if (task.id == parseInt(e.target.id)) {
+        if (task.completed) {
+          is_done(task.id);
+          e.target.innerHTML = "Not Completed";
+          e.target.className = "not_done";
+        } else {
+          is_done(task.id);
+          e.target.innerHTML = "COMPLETED";
+          e.target.className = "done";
+        }
+        render_task(to_do_list, to_do_list);
+      }
     }
   }
-  render_task(to_do_list, to_do_list);
 });
 
 // // event listener to update the task ==> showing the update_bar
@@ -118,6 +123,16 @@ tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "all_btn fa-solid fa-list all_btn") {
     render_task(to_do_list, to_do_list);
   }
+});
+
+// clear all the completed list
+clear_completed.addEventListener("click", (e) => {
+  let filtered_list = to_do_list.filter((task) => {
+    return task.completed == false;
+  });
+  to_do_list = [];
+  to_do_list = [...filtered_list];
+  render_task(filtered_list, to_do_list);
 });
 
 // to the render function
