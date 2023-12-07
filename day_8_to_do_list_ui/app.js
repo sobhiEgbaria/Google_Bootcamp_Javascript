@@ -85,7 +85,10 @@ tasks_div.addEventListener("click", (e) => {
 // the function have eventListener on click will call editTodo function.
 const update_content = (id) => {
   update_bar.addEventListener("click", (e) => {
-    if (e.target.className == "heading_update_btn") {
+    if (
+      e.target.className == "heading_update_btn" &&
+      update_input.value !== ""
+    ) {
       editTodo(id, update_input.value); // editTodo with the input value
       render_task(to_do_list, to_do_list);
       update_bar.style.display = "none"; // the update_bar will disappear
