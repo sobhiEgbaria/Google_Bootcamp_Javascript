@@ -1,24 +1,5 @@
 let to_do_list = [];
 
-`the next few lines in comment will fetch data from the API and render it to the page.
-if you remove the comment it will work just fine, but the layout not that good,
-and the completed button act act weird in some cases,
-that not happens when you enter the tasks manually
-that's why i leave it in comment.
-you can try uncomment the fetch.
-sorry for the long speech :)
-`;
-
-// fetch the data and add it to the list then render the list to show thw data.
-// for (let i = 0; i < 10; i++) {
-//   fetch(`https://jsonplaceholder.typicode.com/todos/${i}`).then((res) => {
-//     res.json().then((data) => {
-//       to_do_list.push(data);
-//       render_task(to_do_list, to_do_list);
-//     });
-//   });
-// }
-
 const add_task = document.getElementById("btn"); // btn add task onClick
 const input = document.getElementById("input"); // input for the task title
 const tasks_div = document.getElementById("tasks"); // div contain all the new tasks
@@ -26,7 +7,6 @@ const update_bar = document.getElementById("update_bar"); // div contain the inp
 const update_input = document.getElementById("update_input"); // input for the update
 const clear_completed = document.getElementById("clear_completed"); // input for the update
 
-// update_bar display = make all the div disappear
 update_bar.style.display = "none";
 
 // event listener to Add task button, to add new task with add button
@@ -35,23 +15,21 @@ add_task.addEventListener("click", () => {
     add(input.value);
     input.value = "";
   }
-  render_task(to_do_list, to_do_list); //render and create the tasks
+  render_task(to_do_list, to_do_list);
 });
 
-// event listener to input, to add new task with Enter
 input.addEventListener("keypress", (e) => {
   if (input.value !== "" && e.key == "Enter") {
     add(input.value);
     input.value = "";
   }
-  render_task(to_do_list, to_do_list); //render and create the tasks
+  render_task(to_do_list, to_do_list);
 });
 
-// event listener to delete button
 tasks_div.addEventListener("click", (e) => {
   if (e.target.className == "delete") {
-    remove(parseInt(e.target.id)); // cast the id string to number
-    render_task(to_do_list, to_do_list); // create the list from the beginning
+    remove(parseInt(e.target.id));
+    render_task(to_do_list, to_do_list);
   }
 });
 
@@ -143,14 +121,10 @@ to_do_list = always the full list (not filtered).
 the main reason to do this, when i sent filtered list to render, i lose the filtered. 
 and inside the render function i need the hole data to calculate completed,Active.... and more
 `;
-//clear all the tasks first.
-// if the full list not empty, create a filter btns
-// loop over the render_list and create the every new task/update_input/buttons
+
 const render_task = (render_list, to_do_list) => {
-  // clear the tasks_div
   tasks_div.innerHTML = "";
 
-  // tow counters to calculate completed and active task
   let is_Active = 0;
   let is_Completed = 0;
   for (const task of to_do_list) {
@@ -188,7 +162,11 @@ const render_task = (render_list, to_do_list) => {
   render_list.forEach((task) => {
     // create a div that contain one new task
     let new_task = document.createElement("div");
-    new_task.className = "new_task";
+    if (task.completed) {
+      new_task.className = "completed_new_task";
+    } else {
+      new_task.className = "new_task";
+    }
     new_task.id = task.id;
 
     // create the title of the new task
