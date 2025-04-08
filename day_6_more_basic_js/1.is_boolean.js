@@ -1,9 +1,7 @@
-const yesOrNo = (boolean) =>{
+const isBoolean = (boolean) => {
+  let answer = typeof boolean === "string" ? "yes string" : "no string";
 
-    let answer = (typeof boolean) === "string" ? "yes string" : "no string" 
-   
-    return answer;
+  return answer;
+};
 
-   }
-   
-   console.log(yesOrNo("sobhi"));
+console.log(isBoolean("sobhi"));
