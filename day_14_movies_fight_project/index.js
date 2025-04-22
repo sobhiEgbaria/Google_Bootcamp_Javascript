@@ -9,17 +9,19 @@
 
 // const api = "http://www.omdbapi.com/?apikey=e4f0af8b&s=titanic";
 
-const axios = require("axios");
-
 const fetchData = async () => {
   const api = "http://www.omdbapi.com/";
   const res = await axios.get(api, {
     params: {
       apikey: "e4f0af8b",
-      s: "Casino",
+      s: "casino",
     },
   });
-  console.log(res.data);
+  console.log(res.data.Search);
 };
 
-fetchData();
+const input = document.querySelector("#searchInput");
+
+input.addEventListener("input", (e) => {
+  fetchData();
+});

@@ -11,6 +11,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.8.4/axios.min.js"
+      integrity="sha512-2A1+/TAny5loNGk3RBbk11FwoKXYOMfAK6R7r4CpQH7Luz4pezqEGcfphoNzB7SM4dixUoJsKkBsB6kg+dNE2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <section class="hero is-primary is-bold">
@@ -25,7 +31,9 @@
         </div>
       </div>
     </section>
-    <div class="container"></div>
-    <script src="index.js"></script>
+    <div class="container">
+      <input type="text" id="searchInput" />
+    </div>
+    <script src="index.js" type="module"></script>
   </body>
 </html>
