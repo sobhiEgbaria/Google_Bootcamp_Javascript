@@ -6,7 +6,6 @@ class Timer {
     if (callback) {
       this.onStart = callback.onStart;
       this.onTick = callback.onTick;
-      this.onCompleted = callback.onCompleted;
     }
 
     this.startBtn.addEventListener("click", this.start);
@@ -17,15 +16,20 @@ class Timer {
     this.tick();
     this.intervalId = setInterval(this.tick, 50);
   };
+
   tick = () => {
     if (this.timeRemaining <= 0) {
-      this.onCompleted();
       this.pause();
     } else {
       this.timeRemaining = this.timeRemaining - 0.05;
       this.onTick(this.timeRemaining);
     }
   };
+
+  pause = () => {
+    clearInterval(this.intervalId);
+  };
+
   get timeRemaining() {
     return parseFloat(this.durationInput.value);
   }
@@ -33,8 +37,4 @@ class Timer {
   set timeRemaining(time) {
     this.durationInput.value = time.toFixed(2);
   }
-  pause = () => {
-    clearInterval(this.intervalId);
-  };
-  onDurationChange = () => {};
 }
