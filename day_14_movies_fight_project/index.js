@@ -1,27 +1,39 @@
-// // Here is your key: e4f0af8b
+// key: e4f0af8b ==> api = "http://www.omdbapi.com/?apikey=e4f0af8b&s=titanic";
+const input = document.querySelector("#searchInput");
+const container = document.querySelector("#container");
 
-// // Please append it to all of your API requests,
-
-// // OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=e4f0af8b
-
-// // Click the following URL to activate your key: http://www.omdbapi.com/apikey.aspx?VERIFYKEY=e61e3907-8f66-4794-9a3b-33c2eb8845ff
-// // If you did not make this request, please disregard this email.
-
-// const api = "http://www.omdbapi.com/?apikey=e4f0af8b&s=titanic";
-
-const fetchData = async () => {
+const fetchData = async (term) => {
   const api = "http://www.omdbapi.com/";
   const res = await axios.get(api, {
     params: {
       apikey: "e4f0af8b",
-      s: "casino",
+      s: term,
     },
   });
-  console.log(res.data.Search);
+  if (res.data.Error) {
+    return [];
+  }
+  return res.data.Search;
 };
 
-const input = document.querySelector("#searchInput");
+input.addEventListener(
+  "input",
+  Debounce(async (event) => {
+    const movies = await fetchData(event.target.value);
+    console.log(movies);
+    renderMovies(movies);
+  })
+);
 
-input.addEventListener("input", (e) => {
-  fetchData();
-});
+const renderMovies = (movies) => {
+  for (let movie of movies) {
+    console.log(movie.Title);
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+     <img src="${movie.Poster}" alt="">
+      <h1>${movie.Title}</h1> 
+    `;
+    container.appendChild(div);
+  }
+};
