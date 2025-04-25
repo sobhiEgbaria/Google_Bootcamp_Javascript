@@ -1,12 +1,13 @@
-const Debounce = (callback, delay = 1000) => {
-  let timeOutId;
-
+const debounce = (func, delay = 1000) => {
+  let timeoutId;
   return (...args) => {
-    if (timeOutId) {
-      clearTimeout(timeOutId);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
-    timeOutId = setTimeout(() => {
-      callback.apply(null, args);
+    timeoutId = setTimeout(() => {
+      func.apply(null, args);
     }, delay);
   };
 };
+
+// key: e4f0af8b ==> api = "http://www.omdbapi.com/?apikey=e4f0af8b&s=titanic";
