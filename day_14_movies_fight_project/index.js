@@ -1,16 +1,16 @@
-const fetchData = async (term) => {
-  const api = "http://www.omdbapi.com/";
-  const res = await axios.get(api, {
+const fetchData = async (searchTerm) => {
+  const response = await axios.get("http://www.omdbapi.com/", {
     params: {
       apikey: "e4f0af8b",
-      s: term,
+      s: searchTerm,
     },
   });
 
-  if (res.data.Error) {
+  if (response.data.Error) {
     return [];
   }
-  return res.data.Search;
+
+  return response.data.Search;
 };
 
 const root = document.querySelector(".autocomplete");
@@ -40,8 +40,8 @@ const onInput = async (event) => {
       <img src="${movie.Poster}" />
       ${movie.Title}
     `;
+
     resultsWrapper.appendChild(option);
-    console.log(movie.Title);
   }
 };
-input.addEventListener("click", debounce(onInput, 1000));
+input.addEventListener("input", debounce(onInput, 500));
