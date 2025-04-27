@@ -1,0 +1,15 @@
+{
+  "name": "day_16_nodejs",
+  "version": "1.0.0",
+  "main": "1.ls_implementation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "bin": {
+    "run-ls": "1.ls_implementation.js"
+  }
+}
