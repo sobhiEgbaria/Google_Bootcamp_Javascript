@@ -4,5 +4,5 @@ fs.readdir(process.cwd(), (err, filenames) => {
   if (err) {
     console.log("gogo lolo");
   }
-  console.log(filenames);
+  console.log("gogo lolo");
 });
