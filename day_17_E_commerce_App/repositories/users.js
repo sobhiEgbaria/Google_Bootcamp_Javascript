@@ -20,12 +20,20 @@ class UsersRepository {
       })
     );
   }
-
-  async create(info) {
+  randomId() {
+    return crypto.randomBytes(4).toString("hex");
+  }
+  async getOne(id) {
     const records = await this.getAll();
-    info["id"] = this.randomId();
-    records.push(info);
+    return records.find((product) => product.id === id);
+  }
+
+  async create(userinfo) {
+    const records = await this.getAll();
+    userinfo["id"] = this.randomId();
+    records.push(userinfo);
     await this.writeAll(records);
+    return userinfo;
   }
 
   async writeAll(records) {
@@ -33,14 +41,6 @@ class UsersRepository {
       this.fileName,
       JSON.stringify(records, null, 2)
     );
-  }
-
-  randomId() {
-    return crypto.randomBytes(4).toString("hex");
-  }
-  async getOne(id) {
-    const records = await this.getAll();
-    return records.find((product) => product.id === id);
   }
 
   async deleteOne(id) {
@@ -51,18 +51,28 @@ class UsersRepository {
 
   async update(id, updateValue) {
     const records = await this.getAll();
+    const record = records.find((product) => product.id === id);
+    Object.assign(record, updateValue);
+    await this.writeAll(records);
+  }
+
+  async getOneBy(filters) {
+    const records = await this.getAll();
+
+    for (let record of records) {
+      let found = true;
+
+      for (let key in filters) {
+        if (record[key] !== filters[key]) {
+          found = false;
+        }
+      }
+
+      if (found) {
+        return record;
+      }
+    }
   }
 }
 
-const test = async () => {
-  const repo = new UsersRepository("users.json");
-  await repo.create({ Email: "sobhi@", password: "12312312" });
-  await repo.create({ Email: "sobhi@", password: "12312312" });
-  const records = await repo.getAll();
-  const product = await repo.getOne("6d389545");
-  console.log(records);
-  console.log("===========================");
-  console.log(product);
-  // await repo.deleteOne("215cb7a7");
-};
-test();
+module.exports = new UsersRepository("users.json");
