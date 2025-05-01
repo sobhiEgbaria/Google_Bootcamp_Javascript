@@ -1,5 +1,8 @@
 const fs = require("fs");
 const crypto = require("crypto");
+const util = require("util");
+const scrypt = util.promisify(crypto.scrypt); // promisify = change the crypto.scrypt to premies function to use asy await
+
 class UsersRepository {
   constructor(fileName) {
     if (!fileName) {
@@ -28,12 +31,28 @@ class UsersRepository {
     return records.find((product) => product.id === id);
   }
 
-  async create(userinfo) {
+  async create(userInfo) {
     const records = await this.getAll();
-    userinfo["id"] = this.randomId();
-    records.push(userinfo);
+
+    userInfo["id"] = this.randomId();
+    const salt = crypto.randomBytes(8).toString("hex");
+    const bufferPassword = await scrypt(userInfo.Password, salt, 64);
+
+    const hashedUserInfo = {
+      ...userInfo,
+      Password: `${bufferPassword.toString("hex")}.${salt}`, // password+slat.slat
+    };
+
+    records.push(hashedUserInfo);
     await this.writeAll(records);
-    return userinfo;
+    return hashedUserInfo;
+  }
+
+  async comparePassword(saved, supplied) {
+    const [hashedPassword, salt] = saved.split(".");
+    const bufferSupplied = await scrypt(supplied, salt, 64);
+    const hashedSupplied = bufferSupplied.toString("hex");
+    return hashedPassword === hashedSupplied;
   }
 
   async writeAll(records) {
