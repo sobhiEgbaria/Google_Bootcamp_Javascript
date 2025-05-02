@@ -9,22 +9,38 @@ const getErr = (err, prop) => {
   }
 };
 
-module.exports = ({ req, err }) => {
+module.exports = ({ err }) => {
   return layout({
     content: `
-      ${req.session.userId}
-      }
-      <form method="POST">
-         <div>
-          <input name = "Email" placeholder="Email" />
-          ${getErr(err, "Email")}
-          <input name = "Password" placeholder="Password" />
-          ${getErr(err, "Password")}
-          <input name = "PasswordConfirmation" placeholder="Password Confirmation" />
-          ${getErr(err, "PasswordConfirmation")}
-          <button>Sign Up</button>
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-one-quarter">
+            <form method="POST">
+              <h1 class="title">Sign Up</h1>
+              <div class="field">
+                <label class="label">Email</label>
+                <input required class="input" name = "Email" placeholder="Email" />
+                <p class="help is-danger">${getErr(err, "Email")}</p>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <input required class="input" name = "Password" placeholder="Password" type="password" />
+                <p class="help is-danger">${getErr(err, "Password")}</p>
+              </div>
+              <div class="field">
+                <label class="label">Password Confirmation</label>
+                <input required class="input" name = "PasswordConfirmation" placeholder="Password Confirmation" type="password" />
+                <p class="help is-danger">${getErr(
+                  err,
+                  "PasswordConfirmation"
+                )}</p>
+              </div>
+              <button class="button is-primary">Submit</button>
+            </form>
+            <a href="/signin">Have an account? Sign In</a>
+          </div>
         </div>
-      </form>
-      `,
+      </div>
+    `,
   });
 };

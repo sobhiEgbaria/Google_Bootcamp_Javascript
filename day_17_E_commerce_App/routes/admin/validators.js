@@ -45,7 +45,6 @@ module.exports = {
     .custom(async (Password, { req }) => {
       const user = await users.getOneBy({ Email: req.body.Email });
       if (!user) {
-        console.log("gogo lolo1");
         throw new Error("invalid password");
       }
       const validPassword = await users.comparePassword(
@@ -53,7 +52,6 @@ module.exports = {
         Password
       );
       if (!validPassword) {
-        console.log("gogo lolo");
         throw new Error("invalid password");
       }
     }),

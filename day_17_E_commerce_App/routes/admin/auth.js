@@ -39,7 +39,7 @@ router.get("/signout", (req, res) => {
 });
 
 router.get("/signin", (req, res) => {
-  res.send(signinTemplate());
+  res.send(signinTemplate({}));
 });
 
 router.post(
@@ -47,7 +47,9 @@ router.post(
   [requireSignInEmail, requireSignInPassword],
   async (req, res) => {
     const err = validationResult(req);
-    console.log(err);
+    if (!err.isEmpty()) {
+      return res.send(signinTemplate({ err }));
+    }
 
     const { Email } = req.body;
 
