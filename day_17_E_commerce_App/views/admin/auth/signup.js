@@ -13,6 +13,7 @@ module.exports = ({ req, err }) => {
   return layout({
     content: `
       ${req.session.userId}
+      }
       <form method="POST">
          <div>
           <input name = "Email" placeholder="Email" />

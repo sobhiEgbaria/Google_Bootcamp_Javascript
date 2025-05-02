@@ -1,14 +1,16 @@
 const express = require("express");
 const { validationResult } = require("express-validator");
 
-const users = require("../../repositories/users.js");
-const signupTemplate = require("../../views/admin/auth/signup.js");
-const signinTemplate = require("../../views/admin/auth/signin.js");
+const users = require("../../repositories/users");
+const signupTemplate = require("../../views/admin/auth/signup");
+const signinTemplate = require("../../views/admin/auth/signin");
 const {
   requireEmail,
   requirePassword,
   requirePasswordConfirmation,
-} = require("./validators.js");
+  requireSignInEmail,
+  requireSignInPassword,
+} = require("./validators");
 
 const router = express.Router();
 
@@ -40,23 +42,21 @@ router.get("/signin", (req, res) => {
   res.send(signinTemplate());
 });
 
-router.post("/signin", async (req, res) => {
-  const { Email, Password } = req.body;
+router.post(
+  "/signin",
+  [requireSignInEmail, requireSignInPassword],
+  async (req, res) => {
+    const err = validationResult(req);
+    console.log(err);
 
-  const existingUser = await users.getOneBy({ Email });
-  const validPassword = await users.comparePassword(
-    existingUser.Password,
-    Password
-  );
+    const { Email } = req.body;
 
-  if (!existingUser) {
-    return res.send("User dose not find");
+    const user = await users.getOneBy({ Email });
+
+    req.session.userId = user.id;
+
+    res.send("done you are in");
   }
-  if (!validPassword) {
-    return res.send("Passwords not match ");
-  }
-  req.session.userId = existingUser.id;
-  res.send("done you are in");
-});
+);
 
 module.exports = router;
