@@ -22,7 +22,7 @@ router.post(
   "/signup",
   [requireEmail, requirePassword, requirePasswordConfirmation],
   async (req, res) => {
-    const { Email, Password, PasswordConfirmation } = req.body;
+    const { Email, Password } = req.body;
     const err = validationResult(req);
     if (!err.isEmpty()) {
       return res.send(signupTemplate({ req, err }));
@@ -30,7 +30,7 @@ router.post(
 
     const user = await users.create({ Email, Password });
     req.session.userId = user.id;
-    res.send("done");
+    res.redirect("/admin/products");
   }
 );
 router.get("/signout", (req, res) => {
@@ -57,7 +57,7 @@ router.post(
 
     req.session.userId = user.id;
 
-    res.send("done you are in");
+    res.redirect("/admin/products");
   }
 );
 
