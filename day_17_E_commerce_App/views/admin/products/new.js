@@ -1,4 +1,4 @@
-const layout = require("../../layout");
+const layout = require("../layout");
 const getErr = (err, prop) => {
   // prop = "Email or password of PasswordConfirmation"
   try {
