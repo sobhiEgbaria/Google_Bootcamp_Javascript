@@ -23,12 +23,17 @@ module.exports = ({ content }) => {
                   </li>
                   <li>
                     <a href=""><i class="fa fa-envelope"></i> shop@myshop.com</a>
+                    
+                  </li>
+                  <li>
+                   <a href="/signup"><p>signUp </p></a>
+                    
                   </li>
                 </ul>
               </div>
               <div>
                 <ul class="social">
-                  <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                   <li><a href=""><i class="fab fa-facebook"></i></a></li>
                   <li><a href=""><i class="fab fa-twitter"></i></a></li>
                   <li><a href=""><i class="fab fa-linkedin"></i></a></li>
                   <li><a href=""><i class="fab fa-dribbble"></i></a></li>
@@ -50,6 +55,7 @@ module.exports = ({ content }) => {
                     <a href="/"><i class="fa fa-star"></i> Products</a>
                   </div>
                   <div class="navbar-item">
+                             
                     <a href="/cart"><i class="fa fa-shopping-cart"></i> Cart</a>
                   </div>
                 </div>
