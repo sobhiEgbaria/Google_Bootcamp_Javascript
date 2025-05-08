@@ -1,27 +1,37 @@
 const { myForEtch, myMap } = require("./app");
+const assert = require("assert");
 
 // test without framework (( myForEtch))
-let sum = 0;
-myForEtch([1, 2, 3], (value) => {
-  sum += value;
-});
+const test1 = () => {
+  try {
+    let sum = 0;
+    myForEtch([1, 2, 3], (value) => {
+      sum += value;
+    });
+    assert.strictEqual(sum, 6, "expecting a su of 6");
 
-if (sum !== 6) {
-  throw new Error("expecting a su of 6");
-} else {
-  console.log("test is pass");
-}
+    console.log("test is pass");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // map test
+const test2 = () => {
+  try {
+    const result = myMap([1, 2, 3], (value) => {
+      return value * 2;
+    });
 
-const result = myMap([1, 2, 3], (value) => {
-  return value * 2;
-});
-
-for (let i = 0; i < result.length; i++) {
-  let arr = [2, 4, 6];
-  if (result[i] !== arr[i]) {
-    throw new Error("expecting arr of [2,4,6]");
+    for (let i = 0; i < result.length; i++) {
+      let arr = [2, 4, 6];
+      assert.strictEqual(result[i], arr[i], "expecting a su of 6");
+      console.log("test is pass");
+    }
+  } catch (error) {
+    console.log(error);
   }
-  console.log("test is pass");
-}
+};
+
+test1();
+test2();
