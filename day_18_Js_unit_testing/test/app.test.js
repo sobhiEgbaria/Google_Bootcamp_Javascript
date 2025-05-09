@@ -1,4 +1,4 @@
-const { emit } = require("process");
+const { describe } = require("node:test");
 const {
   checkNumber,
   sayHello,
@@ -6,6 +6,7 @@ const {
   Undefined,
   obj,
   logIn,
+  sum,
 } = require("../src/app");
 
 describe("checkNumber", () => {
@@ -23,12 +24,17 @@ describe("checkNumber", () => {
     const res = checkNumber(0);
     expect(res).toBe(0);
   });
+  test("check sum function", () => {
+    const res = sum(1, 2);
+    expect(res).toBe(3);
+  });
 });
 
 describe("say hello", () => {
   test("get a word as param and return hello + the word", () => {
     const res = sayHello("gogo");
     expect(res).toContain("gogo");
+    expect(res).toMatch("gogo");
   });
 });
 
@@ -78,4 +84,29 @@ describe("check valid email", () => {
     expect(res.id).toBeDefined();
     expect(res.id).toBeGreaterThan(0);
   });
+});
+
+/// Setup Functions
+describe("Setup Functions", () => {
+  beforeAll(() => {
+    // it's run once before all tests start
+    // connectToDB();
+  });
+
+  afterAll(() => {
+    // it's run once after all tests finish
+    // disconnect();
+  });
+
+  beforeEach(() => {
+    // it's run before each test
+  });
+
+  afterEach(() => {
+    // it's run after each test
+  });
+
+  test("test 1", () => {});
+  test("test 2", () => {});
+  test("test 3", () => {});
 });

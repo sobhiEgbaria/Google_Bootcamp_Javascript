@@ -2,6 +2,10 @@ const checkNumber = (number) => {
   return number > 0 ? number : 0;
 };
 
+const sum = (a, b) => {
+  return a + b;
+};
+
 const sayHello = (word) => {
   return `hello ${word}`;
 };
@@ -27,4 +31,4 @@ const logIn = (email) => {
   return { id, email };
 };
 
-module.exports = { checkNumber, sayHello, array, Undefined, obj, logIn };
+module.exports = { checkNumber, sayHello, array, Undefined, obj, logIn, sum };
