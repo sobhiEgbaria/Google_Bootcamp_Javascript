@@ -7,6 +7,7 @@ const {
   obj,
   logIn,
   sum,
+  getData,
 } = require("../src/app");
 
 describe("checkNumber", () => {
@@ -38,6 +39,7 @@ describe("say hello", () => {
   });
 });
 
+//array testing:
 describe("array of info", () => {
   test("", () => {
     const res = array("sobhi", "egbaria", "gogo", "201111");
@@ -57,6 +59,7 @@ describe("function return undefined", () => {
   });
 });
 
+// test for objects:
 describe("function return obj must have name and id ", () => {
   test("", () => {
     const res = obj({ name: "aaa", id: 300, family: "egbaria" });
@@ -66,6 +69,7 @@ describe("function return obj must have name and id ", () => {
   });
 });
 
+// test for errors:
 describe("check valid email", () => {
   // when we do a test for exception we should use callback in the expect().
 
@@ -86,7 +90,7 @@ describe("check valid email", () => {
   });
 });
 
-/// Setup Functions
+/// Setup Functions:
 describe("Setup Functions", () => {
   beforeAll(() => {
     // it's run once before all tests start
@@ -109,4 +113,12 @@ describe("Setup Functions", () => {
   test("test 1", () => {});
   test("test 2", () => {});
   test("test 3", () => {});
+});
+
+// test async and use mock data:
+describe("get data", () => {
+  test("test valid data ", async () => {
+    const res = await getData();
+    expect(res).toHaveLength(2);
+  });
 });

@@ -31,4 +31,23 @@ const logIn = (email) => {
   return { id, email };
 };
 
-module.exports = { checkNumber, sayHello, array, Undefined, obj, logIn, sum };
+const getData = async () => {
+  return [
+    { id: 1, name: "sobhi" },
+    {
+      id: 2,
+      name: "gogo",
+    },
+  ];
+};
+
+module.exports = {
+  checkNumber,
+  sayHello,
+  array,
+  Undefined,
+  obj,
+  logIn,
+  sum,
+  getData,
+};
